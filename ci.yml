@@ -1,0 +1,25 @@
+паmе: CI Workflow
+0n:
+push:
+jobs:
+bulld-and-test:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout code
+uses: actions/checkout@v2
+- name: Set up Node.Js
+uses: actions/setup-node@v2 
+with:
+node-version: '18'
+- name: Install dependencies 
+run: npm install
+- name: Run tests
+run: npm test
+deploy:
+runs-on: ubuntu-latest
+needs: build-and-test
+steps:
+- name: Checkout code
+uses: actions/checkout@v2
+- name: Deploy application
+run: echo Deploying application...*
